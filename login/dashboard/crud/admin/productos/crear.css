@@ -1,0 +1,52 @@
+body {
+    /*background: linear-gradient(90deg, #D2B4DE 0%, #7d3c98 100%);*/
+    background: -webkit-linear-gradient(to right, #480664, #d489f1);
+    /*combinacion de morado*/
+    background: linear-gradient( to right, #7d3c98, #c978e9);
+    /*combinacion de morado*/
+}
+
+.contenedor {
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38);
+    background: linear-gradient(to right, #dcafee, #aea0b4);
+}
+
+h1 {
+    max-width: absolute;
+    font-size: 80px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+
+.boton {
+    margin: 10px;
+    border-radius: 10px
+}
+
+fieldset,
+label,
+legend {
+    color: black;
+    background: linear-gradient(to right, #dcafee, #aea0b4);
+}
+
+input {
+    /*color: black;*/
+    background: #d489f1;
+    /*background: rgba( 255, 255, 255, 0.25);*/
+    /*box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37); */
+    /*backdrop-filter: blur( 3.5px);
+    -webkit-backdrop-filter: blur( 3.5px);*/
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18);
+    /*background: linear-gradient(to right, #dcafee, #aea0b4); */
+}
+
+input .boton-verde {
+    background: #d489f1;
+}
