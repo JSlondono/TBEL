@@ -43,8 +43,11 @@
             if($resultado) {
                 $mensaje = "Su producto se ha borrado correctamente";
                 echo "<script>";
-                echo "alert('$mensaje');";  
+                echo "alert('$mensaje');";
+                echo "window.location.href = '../';";
                 echo "</script>";
+                
+
             }
         }
 
@@ -57,7 +60,7 @@
     <main class="contenedor seccion">
         <h1>Administrador de productos</h1>
         <?php if( intval( $resultado ) === 1): ?>
-            <p class="alerta exito">Anuncio Creado Correctamente</p>
+            <!--<p class="alerta exito"></p>-->
         <?php elseif( intval( $resultado ) === 2 ): ?>
             <p class="alerta exito">Anuncio Actualizado Correctamente</p>
         <?php elseif( intval( $resultado ) === 3 ): ?>

@@ -16,8 +16,6 @@ body {
 }
 
 h1 {
-    max-width: absolute;
-    font-size: 80px;
     font-weight: bold;
     color: #fff;
     text-align: center;

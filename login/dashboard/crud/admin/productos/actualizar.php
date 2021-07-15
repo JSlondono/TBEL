@@ -29,7 +29,6 @@
     $descripcion = $productos['descripcion'];
     $ubicacion = $productos['ubicacion'];
     $domicilio = $productos['domicilio'];
-    $vendedorId = $productos['vendedorId'];
     $imagenPropiedad = $productos['imagen'];
 
     // Ejecutar el código después de que el usuario envia el formulario
