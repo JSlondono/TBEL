@@ -86,12 +86,30 @@
         
         imagedestroy($src);
         imagedestroy($tmp1);
-        
-        
-       
-    
+      }
+        else if($extension=="png")
+    {
+        $uploadedfile = $_FILES['image']['tmp_name'];
+        $src = imagecreatefrompng($uploadedfile);
+        list($width,$height)=getimagesize($uploadedfile);
 
-    
+        //set new width            
+        $newwidth1=600;
+        $newheight1=800;
+        $tmp1=imagecreatetruecolor($newwidth1,$newheight1);
+                
+        imagecopyresampled($tmp1,$src,0,0,0,0,$newwidth1,$newheight1,$width,$height);
+        
+        //new random name
+        $temp = explode(".", $_FILES["image"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+                
+        $filename1 = "img/". $newfilename;
+                    
+        imagejpeg($tmp1,$filename1,100);
+        
+        imagedestroy($src);
+        imagedestroy($tmp1);     
 
         if(!$NombreProducto) {
             $errores[] = "Debes añadir un nombre";
