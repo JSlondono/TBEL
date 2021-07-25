@@ -25,6 +25,7 @@
     $ubicacion = '';
     $domicilio = '';
     $VendedorId = '';
+    $categorias = '';
     
     // Ejecutar el código después de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,6 +37,7 @@
         $descripcion = mysqli_real_escape_string( $db,  $_POST['descripcion'] );
         $ubicacion = mysqli_real_escape_string( $db,  $_POST['ubicacion'] );
         $domicilio = mysqli_real_escape_string( $db,  $_POST['domicilio'] );
+        $categorias = mysqli_real_escape_string( $db,  $_POST['categorias'] );
         $VendedorId = mysqli_real_escape_string( $db,  $_POST['vendedor'] );
         
         $creado = date('Y/m/d');
@@ -111,6 +113,10 @@
             $errores[] = 'Define si cuentas con un sistema de domicilios';
         }
 
+        if(!$categorias) {
+            $errores[] = 'Define de qué categoría es tu producto';
+        }
+
                 
 
         //if(!$uploadedfile['name'] || $uploadedfile['error'] ) {
@@ -144,7 +150,7 @@
         if(empty($errores)) {
                
             // Insertar en la base de datos
-            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId) VALUES ( '$NombreProducto', '$precio', '$filename1', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId') ";
+            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId, categorias) VALUES ( '$NombreProducto', '$precio', '$filename1', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId', '$categorias') ";
                 
             // echo $query;
         
@@ -215,6 +221,18 @@
                     
                     <option name = "domicilio" id = "domicilio"  value="No">No</option>
                     <option name = "domicilio" id = "domicilio" value="Si">Si</option>
+        </select>
+                                
+                    </fieldset>
+
+                    <fieldset>
+                <legend>Categorías</legend>
+
+                <select name="categorias">
+                <option value="">-- Seleccione --</option>
+                    <option name = "categorias" id = "domicilio"  value="Tecnologia">Tecnologia</option>
+                    <option name = "categorias" id = "domicilio" value="Alimentos">Alimentos</option>
+                    <option name = "categorias" id = "domicilio" value="Herramientas">Herramientas</option>
         </select>
                                 
                     </fieldset>

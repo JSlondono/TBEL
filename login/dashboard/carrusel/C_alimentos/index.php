@@ -28,10 +28,15 @@
 
 
     // consultar
-    $query = "SELECT * FROM productos";
+    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 1 and VendedorId = 1";
+    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 2 and VendedorId = 1";
+    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 3 and VendedorId = 1";
 
     // obtener resultado
     $resultado = mysqli_query($db, $query);
+    $resultado2 = mysqli_query($db, $query2);
+    $resultado3 = mysqli_query($db, $query3);
+
 
     ?>
 
@@ -67,36 +72,13 @@
 
                                     <!--PRODUCTO IMAGEN-->
 
-
-
                                     <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
-
-
-
-
-
-
-
 
                                     <div class="carousel-caption d-none d-md-block">
 
+                                        <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
 
-
-                                        <h5>Huevos AAA <b>$13.500/canasta</b></h5>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <p>¡Los mejores huevos criollos!</p>
+                                        <p><?php echo $productos['descripcion']; ?></p>
 
                                         <!--NOMBRE PRODUCTO 1--->
                                     <?php endwhile; ?>
@@ -105,25 +87,28 @@
 
 
 
-
-
-
-
-
-
                                 <div class="carousel-item">
-                                    <img class="img" src="img/alimentos-3.jpg">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Salsa de tomate artesanal <b>$8.000</b></h5>
-                                        <p>La mejor salsa para acompañar tus comidas</p>
-                                    </div>
+                                    <?php while ($productos = mysqli_fetch_assoc($resultado2)) : ?>
+                                        <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
+                                        <div class="carousel-caption d-none d-md-block">
+
+                                            <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
+
+                                            <p><?php echo $productos['descripcion']; ?></p>
+                                        <?php endwhile; ?>
+                                        </div>
+
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="img" src="img/alimentos-4.jpg">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Verduras frescas <b>$15.000/combo<b></h5>
-                                        <p>Deliciosas verduras frescas 100% del campo</p>
-                                    </div>
+                                    <?php while ($productos = mysqli_fetch_assoc($resultado3)) : ?>
+                                        <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
+                                        <div class="carousel-caption d-none d-md-block">
+
+                                            <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
+
+                                            <p><?php echo $productos['descripcion']; ?></p>
+                                        </div>
+                                    <?php endwhile; ?>
                                 </div>
 
                         </div>
@@ -136,21 +121,6 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
