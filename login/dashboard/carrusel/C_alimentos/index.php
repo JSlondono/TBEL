@@ -20,48 +20,18 @@
 
 <body>
 
-<?php 
-
-    $id = $_GET['id'];
-    $id = filter_var($id, FILTER_VALIDATE_INT);
-
-    if(!$id) {
-        header('Location: /');
-    }
-
-    // Importar la conexión
-    require 'includes/config/database.php';
-    $db = conectarDB();
-
-
-    // consultar
-    $query = "SELECT * FROM propiedades WHERE id = ${id}";
-
-    // obtener resultado
-    $resultado = mysqli_query($db, $query);
-
-    if(!$resultado->num_rows) {
-        header('Location: /');
-    } 
-    
-    $propiedad = mysqli_fetch_assoc($resultado);
-
-
-    require 'includes/funciones.php';
-    incluirTemplate('header');
-?>
 
     <?php
     // Importar la conexión
-    require __DIR__ . '/database.php';
+    require 'database.php';
     $db = conectarDB();
-    // consultar
-    $query = "SELECT * FROM productos where Vendedorid=1 ";
-    
 
+
+    // consultar
+    $query = "SELECT * FROM productos";
 
     // obtener resultado
-    $resultado1 = mysqli_query($db, $query);
+    $resultado = mysqli_query($db, $query);
 
     ?>
 
@@ -92,14 +62,14 @@
                         <div class="carousel-inner">
 
 
-                            <?php while ($producto1 = mysqli_fetch_assoc($resultado1)) : ?>
+                            <?php while ($productos = mysqli_fetch_assoc($resultado)) : ?>
                                 <div class="carousel-item active">
 
                                     <!--PRODUCTO IMAGEN-->
 
 
 
-                                    <img loading="lazy" src="../../crud/imagenes/<?php echo $producto1['imagen']; ?>" alt="ImagenProducto">
+                                    <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
 
 
 

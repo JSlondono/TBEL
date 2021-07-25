@@ -29,14 +29,7 @@
     // Ejecutar el código después de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // echo "<pre>";
-        // var_dump($_POST);
-        // echo "</pre>";
-
-        //echo "<pre>";
-        //var_dump($_FILES);
-        //echo "</pre>";
-
+       
 
         $NombreProducto = mysqli_real_escape_string( $db,  $_POST['NombreProducto'] );
         $precio = mysqli_real_escape_string( $db,  $_POST['precio'] );
@@ -48,9 +41,55 @@
         $creado = date('Y/m/d');
 
         // Asignar files hacia una variable
-        $imagen = $_FILES['imagen'];
+        //$imagen = $_FILES['imagen'];
 
+        //Si se sube el archivo...
+    if(isset($_FILES['image']['name'])){
+ 
+ 
+        //Se guarda la imagen en una variable
+        $fileinfo = pathinfo($_FILES['image']['name']);
 
+        //Obtiene la extensión del archivo 
+        $extension = $fileinfo['extension'];
+
+        //Si la extensión cumple con la condición se sube, sino no
+
+        if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif"))
+ 	{
+        echo 'Unknown image format.';
+    }
+
+    //Para JPG y JPEG
+    if($extension=="jpg" || $extension=="jpeg" )
+    {
+        $uploadedfile = $_FILES['image']['tmp_name'];
+        $src = imagecreatefromjpeg($uploadedfile);
+        list($width,$height)=getimagesize($uploadedfile);
+        
+        //Establecer parámetros de dimensiones
+        $newwidth1=600;
+        $newheight1=800;
+        $tmp1=imagecreatetruecolor($newwidth1,$newheight1);
+                
+        imagecopyresampled($tmp1,$src,0,0,0,0,$newwidth1,$newheight1,$width,$height);
+
+        //new random name        
+        $temp = explode(".", $_FILES["image"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+                
+        $filename1 = "img/". $newfilename;
+                    
+        imagejpeg($tmp1,$filename1,100);
+        
+        imagedestroy($src);
+        imagedestroy($tmp1);
+        
+        
+       
+    
+
+    
 
         if(!$NombreProducto) {
             $errores[] = "Debes añadir un nombre";
@@ -74,46 +113,43 @@
 
                 
 
-        if(!$imagen['name'] || $imagen['error'] ) {
-            $errores[] = 'La Imagen es Obligatoria';
-        }
+        //if(!$uploadedfile['name'] || $uploadedfile['error'] ) {
+       //     $errores[] = 'La Imagen es obligatoria';
+        //}
 
         // Validar por tamaño (1mb máximo)
-        $medida = 4000 * 4000;
+       // $medida = 12000 * 12000;
 
 
-        if($imagen['size'] > $medida ) {
-            $errores[] = 'La Imagen es muy pesada';
-        }
+       // if($uploadedfile['size'] > $medida ) {
+          //  $errores[] = 'La Imagen es muy pesada';
+        //}
 
 
       
         /** SUBIDA DE ARCHIVOS */
 
             // Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
+           // //$carpetaImagenes = '../../imagenes/';
 
-            if(!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes);
-            }
+            //if(!is_dir($carpetaImagenes)) {
+              //  mkdir($carpetaImagenes);
+           // }
 
             // Generar un nombre único
-            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpeg";    
+            //$nombreImagen = md5( uniqid( rand(), true ) ) . ".jpeg";    
     
-
             
-
-
 
         if(empty($errores)) {
                
             // Insertar en la base de datos
-            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId) VALUES ( '$NombreProducto', '$precio', '$nombreImagen', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId') ";
+            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId) VALUES ( '$NombreProducto', '$precio', '$filename1', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId') ";
                 
             // echo $query;
-
+        
             $resultado = mysqli_query($db, $query);
-
+   }
             if($resultado) {
                 // Redireccionar al usuario.
                 $mensaje = "Su producto se ha registrado correctamente";
@@ -125,10 +161,8 @@
             }
         }
     }
-
-    
+    }
 ?>
->
 
     <main class="contenedor">
         <h1><b>Añadir productos</b></h1>
@@ -154,7 +188,7 @@
                 <input type="number" id="precio" name="precio" placeholder="Precio Producto" value="<?php echo $precio; ?>">
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
+                <input type="file" id="imagen" accept="image/jpeg, image/png, image/jpg//" name="image">
 
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
@@ -183,9 +217,7 @@
                     <option name = "domicilio" id = "domicilio" value="Si">Si</option>
         </select>
                                 
-                
-
-            </fieldset>
+                    </fieldset>
 
             <fieldset>
                 <legend>Nombre de su negocio</legend>
@@ -197,9 +229,6 @@
                     <?php endwhile; ?>
                 </select>
             </fieldset>
-       <input type="submit" value="Crear Producto" class="boton boton-verde">
+        <input type="submit" value="Crear Producto" class="boton boton-verde">
         </form>
-        
     </main>
-
-

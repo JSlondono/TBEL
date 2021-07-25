@@ -12,7 +12,7 @@
     $db = conectarDB();
 
     // Escribir el Query
-    $query = "SELECT * FROM productos";
+    $query = "SELECT * FROM productos ";
 
     // Consultar la BD 
     $resultadoConsulta = mysqli_query($db, $query);
@@ -34,7 +34,7 @@
             $resultado = mysqli_query($db, $query);
             $productos = mysqli_fetch_assoc($resultado);
             
-            unlink('../imagenes/' . $productos['imagen']);
+            unlink('admin/productos/' . $productos['imagen']);
     
             // Eliminar la propiedad
             $query = "DELETE FROM productos WHERE id = ${id}";
@@ -83,9 +83,12 @@
             <tbody> <!-- Mostrar los Resultados -->
                 <?php while( $productos = mysqli_fetch_assoc($resultadoConsulta)): ?>
                 <tr>
+
+                    <!--EN IMG SRC LLAMAS LA IMAGEN A LA BASE DE DATOS, RECUERDE QUE LA BASE DE DATOS CONTIENE EL PARAMETRO img/ POR TANTO NO SE AGREGA EN EL ENRUTAMIENTO, NO AGREGAR ESPACIOS-->
+                    
                     <td scope="col"><?php echo $productos['id']; ?></td>
                     <td scope="col"><?php echo $productos['NombreProducto']; ?></td>
-                    <td scope="col">  <img src="imagenes/<?php echo $productos['imagen']; ?>" class="imagen-tabla"> </td>
+                    <td scope="col">  <img src="admin/productos/<?php echo $productos['imagen']; ?>" class="imagen-tabla"> </td>
                     <td scope="col">$ <?php echo $productos['precio']; ?></td>
                     <td scope="col">
                         <form method="POST" class="w-100">
@@ -104,4 +107,4 @@
     </main>
     </div>
            
-    <script type="text/javascript" src="responsive-tables.js"></script>
+   
