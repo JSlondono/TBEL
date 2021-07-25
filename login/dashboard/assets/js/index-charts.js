@@ -3,7 +3,8 @@
 /* Chart.js docs: https://www.chartjs.org/ */
 
 window.chartColors = {
-    green: '#D2B4DE',
+    green: '#D2B4DE', // rgba(117,193,129, 1)
+    blue: '#CFFEFF', // rgba(91,153,234, 1)
     gray: '#a9b5c9',
     text: '#252930',
     border: '#e7e9ed'

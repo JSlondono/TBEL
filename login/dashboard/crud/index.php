@@ -6,7 +6,7 @@
 <title>Mis productos</title>
 
 <?php 
-
+ $ActualizarDespuesDe = 0.01;
     // Importar la conexión
     require 'includes/config/database.php';
     $db = conectarDB();
@@ -42,10 +42,7 @@
 
             if($resultado) {
                 $mensaje = "Su producto se ha borrado correctamente";
-                echo "<script>";
-                echo "alert('$mensaje');";
-                echo "window.location.href = '../';";
-                echo "</script>";
+                header('location:   ?resultado=3');
                 
 
             }
@@ -72,9 +69,9 @@
         
         <section>
         <div class="table-responsive">
-        <table class="propiedades table table-sm table-responsive ">
+        <table class="propiedades">
             <thead>
-                <tr class="table-responsive">
+                <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Imagen</th>
@@ -107,3 +104,4 @@
     </main>
     </div>
            
+    <script type="text/javascript" src="responsive-tables.js"></script>

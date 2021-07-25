@@ -11,6 +11,10 @@
     require '../../includes/config/database.php';
     $db = conectarDB();
 
+    
+    // Consultar para obtener los vendedores
+    $consulta = "SELECT * FROM vendedores";
+    $resultado = mysqli_query($db, $consulta);
 
     // Arreglo con mensajes de errores
     $errores = [];
@@ -20,8 +24,8 @@
     $descripcion = '';
     $ubicacion = '';
     $domicilio = '';
+    $VendedorId = '';
     
-
     // Ejecutar el código después de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -39,7 +43,7 @@
         $descripcion = mysqli_real_escape_string( $db,  $_POST['descripcion'] );
         $ubicacion = mysqli_real_escape_string( $db,  $_POST['ubicacion'] );
         $domicilio = mysqli_real_escape_string( $db,  $_POST['domicilio'] );
-        
+        $VendedorId = mysqli_real_escape_string( $db,  $_POST['vendedor'] );
         
         $creado = date('Y/m/d');
 
@@ -56,8 +60,8 @@
             $errores[] = 'El precio es obligatorio';
         }
 
-        if( strlen( $descripcion ) < 5 ) {
-            $errores[] = 'La descripción es obligatoria y debe tener al menos 50 caracteres';
+        if( strlen( $descripcion ) < 10 ) {
+            $errores[] = 'La descripción es obligatoria y debe tener al menos 10 caracteres';
         }
 
         if(!$ubicacion) {
@@ -75,7 +79,7 @@
         }
 
         // Validar por tamaño (1mb máximo)
-        $medida = 1000 * 1000;
+        $medida = 4000 * 4000;
 
 
         if($imagen['size'] > $medida ) {
@@ -83,16 +87,8 @@
         }
 
 
-        //echo "<pre>";
-        //var_dump($errores);
-        //echo "</pre>";
-
-
-        // Revisar que el array de errores este vacio
-
-        if(empty($errores)) {
-
-            /** SUBIDA DE ARCHIVOS */
+      
+        /** SUBIDA DE ARCHIVOS */
 
             // Crear carpeta
             $carpetaImagenes = '../../imagenes/';
@@ -102,15 +98,17 @@
             }
 
             // Generar un nombre único
-            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpeg";    
+    
+
+            
 
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
- 
 
+        if(empty($errores)) {
+               
             // Insertar en la base de datos
-            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado) VALUES ( '$NombreProducto', '$precio', '$nombreImagen', '$descripcion', '$ubicacion', '$domicilio','$creado') ";
+            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId) VALUES ( '$NombreProducto', '$precio', '$nombreImagen', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId') ";
                 
             // echo $query;
 
@@ -121,7 +119,7 @@
                 $mensaje = "Su producto se ha registrado correctamente";
                 echo "<script>";
                 echo "alert('$mensaje');";  
-                echo "window.location = '../../';";
+                header('Location: ../../?resultado=1');
                 echo "</script>";
                 /*header('Location: /');*/
             }
@@ -180,14 +178,25 @@
                 <legend>¿Domicilios?</legend>
 
                 <select name="domicilio">
-                    <option value="">-- Seleccione --</option>
-                    <option name = "domicilio" id = "domicilio" value="Si">Si</option>
+                    
                     <option name = "domicilio" id = "domicilio"  value="No">No</option>
+                    <option name = "domicilio" id = "domicilio" value="Si">Si</option>
+        </select>
                                 
                 
 
             </fieldset>
 
+            <fieldset>
+                <legend>Nombre de su negocio</legend>
+
+                <select name="vendedor">
+                    <option value="">-- Seleccione --</option>
+                    <?php while($vendedor =  mysqli_fetch_assoc($resultado) ) : ?>
+                        <option  <?php echo $VendedorId === $vendedor['id'] ? 'selected' : ''; ?>   value="<?php echo $vendedor['id']; ?>"> <?php echo $vendedor['NombreNegocio'] ?> </option>
+                    <?php endwhile; ?>
+                </select>
+            </fieldset>
        <input type="submit" value="Crear Producto" class="boton boton-verde">
         </form>
         

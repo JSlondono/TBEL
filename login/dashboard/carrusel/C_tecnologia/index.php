@@ -9,7 +9,7 @@
     <title>Tecnología</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../carruselstyle/estilos.css">
     <link rel="stylesheet" type="text/css" href="../../fuentes/iconic/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
@@ -21,7 +21,7 @@
 <body>
 
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="container-login">
 
@@ -48,7 +48,7 @@
                         <div class="carousel-inner">
                             
                             <div class="carousel-item active">
-                                <img class="img" src="img/tecnologia-4.jpg" alter="Hola">
+                                <img class="img" src="../../crud/imagenes/2b0f00acac0a65e363fbdde4fa0a3ea9.jpg" alter="Hola">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Tablet samsumng<b>$380.000<b></h5>
                                     <p>Tablets de todas las marcas.</p>
@@ -79,22 +79,6 @@
                           <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

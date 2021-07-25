@@ -122,8 +122,7 @@
             $query = "UPDATE productos SET NombreProducto = '${NombreProducto}', precio = '${precio}', imagen = '${nombreImagen}', descripcion = '${descripcion}', ubicacion = '${ubicacion}', domicilio = '${domicilio}' WHERE id = ${id} ";
             $resultado = mysqli_query($db, $query);
 
-            
-        }
+            header('Location: ../../?resultado=2');        }
 
    
 
@@ -179,7 +178,6 @@
 
                     <label for = "domicilio">¿Domicilios?</label>
                     <select name="domicilio">
-                    <option value="">-- Seleccione --</option>
                     <option name = "domicilio" id = "domicilio" value="Si">Si</option>
                     <option name = "domicilio" id = "domicilio"  value="No">No</option>
 

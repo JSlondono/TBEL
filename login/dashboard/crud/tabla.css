@@ -8,7 +8,7 @@ body {
 
 .boton-volver {
     color: white;
-    background: border: 0px;
+    background: border 0px;
     border-radius: 10px;
 }
 
@@ -46,3 +46,4 @@ h2 {
     color: #7D3C98;
     margin-top: -30px;
 }
+

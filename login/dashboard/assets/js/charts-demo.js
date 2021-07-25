@@ -1,10 +1,10 @@
 'use strict';
 
-/* Chart.js docs: https://www.chartjs.org/ */
+
 
 window.chartColors = {
-    green: 'D2B4DE', // rgba(117,193,129, 1)
-    blue: '#5b99ea', // rgba(91,153,234, 1)
+    green: '#D2B4DE', 
+    blue: '#BCEEEB', 
     gray: '#a9b5c9',
     text: '#252930',
     border: '#e7e9ed'
@@ -23,9 +23,9 @@ var lineChartConfig = {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
 
         datasets: [{
-            label: 'Dataset',
-            backgroundColor: "rgba(117,193,129,0.2)",
-            borderColor: "rgba(117,193,129, 0.8)",
+            label: 'Ventas totales',
+            backgroundColor: "#FCF1FF",
+            borderColor: "#D2B4DE",
             data: [
                 randomDataPoint(),
                 randomDataPoint(),
@@ -112,9 +112,9 @@ var barChartConfig = {
     data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
         datasets: [{
-                label: 'Dataset 1',
-                backgroundColor: "rgba(117,193,129,0.8)",
-                hoverBackgroundColor: "rgba(117,193,129,1)",
+                label: 'Me gustas',
+                backgroundColor: "#CCBCEE", //color morado
+                hoverBackgroundColor: "#A276FF",
 
 
                 data: [
@@ -128,9 +128,9 @@ var barChartConfig = {
                 ]
             },
             {
-                label: 'Dataset 2',
-                backgroundColor: "rgba(91,153,234,0.8)",
-                hoverBackgroundColor: "rgba(91,153,234,1)",
+                label: 'Añadir al carrito',
+                backgroundColor: "#BCEEEB", //Color azul claro semi oscuro
+                hoverBackgroundColor: "#76F3FF",
 
 
                 data: [
@@ -223,9 +223,9 @@ var pieChartConfig = {
             label: 'Dataset 1'
         }],
         labels: [
-            'Green',
-            'Blue',
-            'Gray',
+            '1° Trimestre',
+            '2° Trimestre',
+            '3° Trimestre',
         ]
     },
     options: {
@@ -247,7 +247,7 @@ var pieChartConfig = {
             bodyFontColor: window.chartColors.text,
             titleFontColor: window.chartColors.text,
 
-            /* Display % in tooltip - https://stackoverflow.com/questions/37257034/chart-js-2-0-doughnut-tooltip-percentages */
+            
             callbacks: {
                 label: function(tooltipItem, data) {
                     //get the concerned dataset
@@ -292,9 +292,9 @@ var doughnutChartConfig = {
             label: 'Dataset 1'
         }],
         labels: [
-            'Green',
-            'Blue',
-            'Gray',
+            '$55.800',
+            '$14.600',
+            '$6.800',
         ]
     },
     options: {
