@@ -42,13 +42,9 @@
         
         $creado = date('Y/m/d');
 
-        // Asignar files hacia una variable
-        //$imagen = $_FILES['imagen'];
-
         //Si se sube el archivo...
-    if(isset($_FILES['image']['name'])){
- 
- 
+if(isset($_FILES['image']['name'])){
+  
         //Se guarda la imagen en una variable
         $fileinfo = pathinfo($_FILES['image']['name']);
 
@@ -109,7 +105,8 @@
         imagejpeg($tmp1,$filename1,100);
         
         imagedestroy($src);
-        imagedestroy($tmp1);     
+        imagedestroy($tmp1);   
+    }  
 
         if(!$NombreProducto) {
             $errores[] = "Debes añadir un nombre";
@@ -136,7 +133,6 @@
         }
 
                 
-
         //if(!$uploadedfile['name'] || $uploadedfile['error'] ) {
        //     $errores[] = 'La Imagen es obligatoria';
         //}
@@ -165,27 +161,26 @@
     
             
 
-        if(empty($errores)) {
-               
-            // Insertar en la base de datos
-            $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId, categorias) VALUES ( '$NombreProducto', '$precio', '$filename1', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId', '$categorias') ";
+}
+                if(empty($errores)) {
+                    
+                    // Insertar en la base de datos
+                    $query = " INSERT INTO productos (NombreProducto, precio, imagen, descripcion, ubicacion, domicilio, creado, VendedorId, categorias) VALUES ( '$NombreProducto', '$precio', '$filename1', '$descripcion', '$ubicacion', '$domicilio','$creado','$VendedorId', '$categorias') ";
+                        
+                    // echo $query;
                 
-            // echo $query;
+                    $resultado = mysqli_query($db, $query);
         
-            $resultado = mysqli_query($db, $query);
-   }
-            if($resultado) {
-                // Redireccionar al usuario.
-                $mensaje = "Su producto se ha registrado correctamente";
-                echo "<script>";
-                echo "alert('$mensaje');";  
-                header('Location: ../../?resultado=1');
-                echo "</script>";
-                /*header('Location: /');*/
-            }
-        }
-    }
-    }
+                    if($resultado) {
+                        // Redireccionar al usuario.
+                        
+                        header('Location: ../../?resultado=1');
+                        
+                        
+                    }
+                }
+    
+}
 ?>
 
     <main class="contenedor">

@@ -28,9 +28,9 @@
 
 
     // consultar
-    $query = "SELECT * FROM productos WHERE categorias = 'Herramientas' and id = 7 and VendedorId = 1";
-    $query2 = "SELECT * FROM productos WHERE categorias = 'Herramientas' and id = 8 and VendedorId = 1";
-    $query3 = "SELECT * FROM productos WHERE categorias = 'Herramientas' and id = 9 and VendedorId = 1";
+    $query = "SELECT * FROM productos WHERE categorias = 'Tecnologia' and id = 1 and VendedorId = 1";
+    $query2 = "SELECT * FROM productos WHERE categorias = 'Tecnologia' and id = 2 and VendedorId = 1";
+    $query3 = "SELECT * FROM productos WHERE categorias = 'Tecnologia' and id = 3 and VendedorId = 1";
 
     // obtener resultado
     $resultado = mysqli_query($db, $query);
