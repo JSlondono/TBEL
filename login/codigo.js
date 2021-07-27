@@ -6,7 +6,7 @@ $('#formLogin').submit(function(e){
    if(usuario.length == "" || password == ""){
       Swal.fire({
           type:'warning',
-          title:'Debe ingresar un usuario y/o password',
+          title:'Debe ingresar un usuario y/o contraseña',
       });
       return false; 
     }else{
@@ -19,14 +19,14 @@ $('#formLogin').submit(function(e){
                if(data == "null"){
                    Swal.fire({
                        type:'error',
-                       title:'Usuario y/o password incorrecta',
+                       title:'Usuario y/o contraseña incorrecta',
                    });
                }else{
                    Swal.fire({
                        type:'success',
                        title:'¡Conexión exitosa!',
                        confirmButtonColor:'#3085d6',
-                       confirmButtonText:'Ingresar'
+                       confirmButtonText:'Acceder'
                    }).then((result) => {
                        if(result.value){
                            //window.location.href = "vistas/pag_inicio.php";
