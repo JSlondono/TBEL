@@ -47,8 +47,7 @@
             </form>
         </div>
     </div>     
-        
-        
+                
      <script src="jquery/jquery-3.3.1.min.js"></script>    
      
      <script src="popper/popper.min.js"></script>    

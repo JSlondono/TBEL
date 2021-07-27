@@ -19,20 +19,20 @@
 
 
 <body>
-
+    
 
     <?php
     // Importar la conexión
-    require 'database.php';
+    require '../bd/database.php';
     $db = conectarDB();
 
 
     // consultar
-    $query = "SELECT *, MIN(id) FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 ORDER BY id DESC LIMIT 1";
+    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId =  LIMIT 0,1";
     
 
-    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 5 and VendedorId = 1";
-    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 6 and VendedorId = 1";
+    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 LIMIT 1,1";
+    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 LIMIT 2,1";
 
     // obtener resultado
     $resultado = mysqli_query($db, $query);

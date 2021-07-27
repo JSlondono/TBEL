@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Perfil</title>
+    <title>Ubicación</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

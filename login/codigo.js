@@ -29,7 +29,7 @@ $('#formLogin').submit(function(e){
                        confirmButtonText:'Acceder'
                    }).then((result) => {
                        if(result.value){
-                           //window.location.href = "vistas/pag_inicio.php";
+                           
                            window.location.href = "dashboard/index.php";
                        }
                    })
