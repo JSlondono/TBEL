@@ -68,6 +68,25 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 100%;
     height: fit-content;
 }
+@media (width: 411px) {
+ 
+    svg{
+
+        width: 90%;
+    }
+
+    .wrap-login{
+
+        height: 100%;
+    }
+    
+    img{
+
+        height: 260px;
+    }
+}
+
+
 
 @media (max-width: 768px) {
     .container-login {
@@ -91,9 +110,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     }
 }
 
-.carta {
-    width: 100%;
-}
+
+
+
 
 .content-center {
     max-width: 800px;
@@ -101,16 +120,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     text-align: center;
     align-items: center;
 }
-/*
-.textoce {
-font-family: impact;
-position: absolute;
-top: 80%;
-left: 50%;
-transform: translate(-50%, -50%);
-color: black;
-background-color: white;
-}*/
+
 
 .list-inline-item {
     padding-top: 1rem;
@@ -152,17 +162,19 @@ background-color: white;
     }
 
 
-    .img{
+    img{
 
-        height: max-content;
+        height: 740px;
     }
+
 
 }
 
 
 /* MOTO 4*/
 
-@media (max-width: 360px) {
+
+@media (width: 360px) {
  
     svg{
 
@@ -174,15 +186,10 @@ background-color: white;
         height: 100%;
     }
     
-    .img{
+    img{
 
-        height: 35rem;
+        height: 560px;
     }
-
-
 }
-
-
-
-
+   
 

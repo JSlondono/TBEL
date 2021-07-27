@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Alimentos</title>
+    <title>Herramientas</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
@@ -20,25 +20,6 @@
 
 <body>
 
-
-    <?php
-    // Importar la conexión
-    require 'database.php';
-    $db = conectarDB();
-
-
-    // consultar
-    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 4 and VendedorId = 1";
-    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 5 and VendedorId = 1";
-    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 6 and VendedorId = 1";
-
-    // obtener resultado
-    $resultado = mysqli_query($db, $query);
-    $resultado2 = mysqli_query($db, $query2);
-    $resultado3 = mysqli_query($db, $query3);
-
-
-    ?>
 
     <div class="container">
 
@@ -67,48 +48,46 @@
                         <div class="carousel-inner">
 
 
-                            <?php while ($productos = mysqli_fetch_assoc($resultado)) : ?>
                                 <div class="carousel-item active">
 
                                     <!--PRODUCTO IMAGEN-->
 
-                                    <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
+                                    <img src="../recursos/img/kit.jpg">
 
                                     <div class="carousel-caption d-none d-md-block">
 
-                                        <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
+                                        <h5>Kit de herramientas para el hogar<b> $65.000</b></h5>
 
-                                        <p><?php echo $productos['descripcion']; ?></p>
+                                        <p>Contiene serrucho, destornilladores, metros, entre otros</p>
 
                                         <!--NOMBRE PRODUCTO 1--->
-                                    <?php endwhile; ?>
                                     </div>
                                 </div>
 
 
 
                                 <div class="carousel-item">
-                                    <?php while ($productos = mysqli_fetch_assoc($resultado2)) : ?>
-                                        <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
+                                    
+                                        <img src="../recursos/img/destornillador.jpg">
                                         <div class="carousel-caption d-none d-md-block">
 
-                                            <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
+                                            <h5>Destornillador imantado<b> $6.800</b></h5>
 
-                                            <p><?php echo $productos['descripcion']; ?></p>
-                                        <?php endwhile; ?>
+                                            <p>Destornillador perfecto para computadores portátiles y equipos delicados</p>
+                                        
                                         </div>
 
                                 </div>
                                 <div class="carousel-item">
-                                    <?php while ($productos = mysqli_fetch_assoc($resultado3)) : ?>
-                                        <img src="../../crud/admin/productos/<?php echo $productos['imagen']; ?>">
+                                    
+                                        <img src="../recursos/img/pegante.jpg">
                                         <div class="carousel-caption d-none d-md-block">
 
-                                            <h5><?php echo $productos['NombreProducto']; ?> $<b><?php echo $productos['precio']; ?></b></h5>
+                                            <h5>Pegante de silincon<b> $15.000</b></h5>
 
-                                            <p><?php echo $productos['descripcion']; ?></p>
+                                            <p>Pegante liquido para todo tipo de superficies</p>
                                         </div>
-                                    <?php endwhile; ?>
+                                    
                                 </div>
 
                         </div>

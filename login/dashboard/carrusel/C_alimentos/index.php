@@ -28,7 +28,9 @@
 
 
     // consultar
-    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 4 and VendedorId = 1";
+    $query = "SELECT *, MIN(id) FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 ORDER BY id DESC LIMIT 1";
+    
+
     $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 5 and VendedorId = 1";
     $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and id = 6 and VendedorId = 1";
 
