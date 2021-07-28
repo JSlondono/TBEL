@@ -1,18 +1,37 @@
+<?php 
+session_start();?>
+
 <link rel="stylesheet" href="app.css?v=<?php echo(rand()); ?>" /> <script src="/js/mi_script.js?v=<?php echo(rand()); ?>"></script>
 <link rel="stylesheet" href="tabla.css?v=<?php echo(rand()); ?>" /> <script src="/js/mi_script.js?v=<?php echo(rand()); ?>"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <title>Mis productos</title>
-
-<?php 
- $ActualizarDespuesDe = 0.01;
+<?php
     // Importar la conexión
     require 'includes/config/database.php';
     $db = conectarDB();
 
+    //Llamo el usuario desde la sesión
+    $usuarioLog = $_SESSION["s_usuario"];
+    //Hago la consulta sobre el ID
+    $queryUser = "SELECT id FROM vendedores WHERE usuario = '$usuarioLog'";
+    //Guardo los resultados en una variable
+    $resultadoUser = mysqli_query($db, $queryUser);
+    //Guarda los datos en un arreglo
+    $ides = mysqli_fetch_assoc($resultadoUser);
+    //Convierte el arreglo en una cadena de texto
+    $idmaestra = implode(";",$ides); ?>
+
+
+<?php 
+ $ActualizarDespuesDe = 0.01;
+    // Importar la conexión
+   
+    
+
     // Escribir el Query
-    $query = "SELECT * FROM productos ";
+    $query = "SELECT * FROM productos WHERE vendedorId = $idmaestra ";
 
     // Consultar la BD 
     $resultadoConsulta = mysqli_query($db, $query);
@@ -29,15 +48,15 @@
         if($id) {
 
             // Eliminar el archivo
-            $query = "SELECT imagen FROM productos WHERE id = ${id}";
+            $query = "SELECT imagen FROM productos WHERE id = ${id} and vendedorId = $idmaestra";
 
             $resultado = mysqli_query($db, $query);
             $productos = mysqli_fetch_assoc($resultado);
             
             unlink('admin/productos/' . $productos['imagen']);
     
-            // Eliminar la propiedad
-            $query = "DELETE FROM productos WHERE id = ${id}";
+            // Eliminar el producto del CRUD
+            $query = "DELETE FROM productos WHERE id = ${id} and vendedorId = $idmaestra";
             $resultado = mysqli_query($db, $query);
 
             if($resultado) {

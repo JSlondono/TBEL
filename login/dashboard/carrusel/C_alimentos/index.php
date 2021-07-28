@@ -1,3 +1,7 @@
+<?php 
+session_start();?>
+
+
 <!doctype html>
 <html>
 
@@ -22,17 +26,27 @@
     
 
     <?php
+    
     // Importar la conexión
     require '../bd/database.php';
     $db = conectarDB();
 
-
-    // consultar
-    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId =  LIMIT 0,1";
+    //Llamo el usuario desde la sesión
+    $usuarioLog = $_SESSION["s_usuario"];
+    //Hago la consulta sobre el ID
+    $queryUser = "SELECT id FROM vendedores WHERE usuario = '$usuarioLog'";
+    //Guardo los resultados en una variable
+    $resultadoUser = mysqli_query($db, $queryUser);
+    //Guarda los datos en un arreglo
+    $ides = mysqli_fetch_assoc($resultadoUser);
+    //Convierte el arreglo en una cadena de texto
+    $idmaestra = implode(";",$ides);
     
-
-    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 LIMIT 1,1";
-    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = 1 LIMIT 2,1";
+    
+    // consultas de las tarjetas
+    $query = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = $idmaestra LIMIT 0,1";
+    $query2 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = $idmaestra LIMIT 1,1";
+    $query3 = "SELECT * FROM productos WHERE categorias = 'Alimentos' and VendedorId = $idmaestra LIMIT 2,1";
 
     // obtener resultado
     $resultado = mysqli_query($db, $query);
