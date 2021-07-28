@@ -131,9 +131,7 @@ a:hover {
   color: white;
 }
 
-.box1 .background-hover {
-  background: linear-gradient(to bottom, #3dc315, #fdb42a);
-}
+
 
 .box .background-hover{
   width: 100px;
