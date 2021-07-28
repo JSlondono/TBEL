@@ -697,7 +697,7 @@ if ($_SESSION["s_usuario"] === null) {
                             </div>
                             <div class="app-card-body p-3 has-card-actions">
 
-                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Figura coleccionable</a></h4>
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Cargador multipuertos</a></h4>
                                 <div class="app-doc-meta">
                                     <ul class="list-unstyled mb-0">
                                         <li><span class="text-muted">Tipo:</span> Image</li>
